@@ -1,0 +1,12 @@
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\bin\Debug\net6.0\TravelPlanerLib.deps.json
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\bin\Debug\net6.0\TravelPlanerLib.dll
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\bin\Debug\net6.0\TravelPlanerLib.pdb
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.csproj.AssemblyReference.cache
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.AssemblyInfoInputs.cache
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.AssemblyInfo.cs
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.csproj.CoreCompileInputs.cache
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.dll
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\refint\TravelPlanerLib.dll
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\TravelPlanerLib.pdb
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlanerLib\obj\Debug\net6.0\ref\TravelPlanerLib.dll

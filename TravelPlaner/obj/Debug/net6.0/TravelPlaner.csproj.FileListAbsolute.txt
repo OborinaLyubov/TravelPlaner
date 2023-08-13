@@ -74,3 +74,6 @@ C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\ob
 C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\obj\Debug\net6.0\TravelPlaner.pdb
 C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\obj\Debug\net6.0\TravelPlaner.genruntimeconfig.cache
 C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\obj\Debug\net6.0\ref\TravelPlaner.dll
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\bin\Debug\net6.0\MailKit.dll
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Любовь Худякова\source\repos\TravelPlaner\TravelPlaner\bin\Debug\net6.0\BouncyCastle.Crypto.dll

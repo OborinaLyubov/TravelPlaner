@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using TravelPlaner;
+using TravelPlaner.Services;
 using TravelPlanerLib.Entities;
+using TravelPlanerLib.Models;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -33,6 +36,100 @@ app.MapGet("/", (HttpContext context) =>
     {
         return Results.Redirect("/login");
     }
+});
+app.MapGet("/registration", async (HttpContext context) =>
+{
+    context.Response.ContentType = "text/html; charset=utf-8";
+    string registrationForm = @"<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset='utf-8' />
+        <title>METANIT.COM</title>
+    </head>
+    <body>
+        <h2>Login Form</h2>
+        <form method='post'>
+            <p>
+                <label>ФИО пользователя</label><br />
+                <input name='name' />
+            </p>
+            <p>
+                <label>Логин</label><br />
+                <input name='login' />
+            </p>
+            <p>
+                <label>Email</label><br />
+                <input type='email' name='email' />
+            </p>
+            <p>
+                <label>Пароль</label><br />
+                <input type='password' name='password' />
+            </p>
+            <p>
+                <label>Повторите пароль</label><br />
+                <input type='password' name='passwordConfirm' />
+            </p>
+            <input type='submit' value='registration' />
+        </form>
+    </body>
+    </html>";
+    await context.Response.WriteAsync(registrationForm);
+});
+
+app.MapPost("/registration", (string? returnUrl, HttpContext context, TravelPlanerDbContext db) =>
+{
+    var constants = new Constants();
+    var form = context.Request.Form;
+    if (form["name"] == string.Empty || 
+        form["login"] == string.Empty || 
+        form["password"] == string.Empty || 
+        form["email"] == string.Empty || 
+        form["passwordConfirm"] == string.Empty)
+        return Results.BadRequest(constants.RequiredFieldsError);
+
+    string name = form["name"];
+    string login = form["login"];
+    string password = form["password"];
+    string email = form["email"];
+    string passwordConfirm = form["passwordConfirm"];
+
+    if(passwordConfirm != password)
+        return Results.BadRequest(constants.PasswordNotCoincidedError);
+
+    var userRegister = new RegisterViewModel()
+    {
+        Name = name,
+        Login = login,
+        Email = email,
+        Password = password,
+        PasswordConfirm = passwordConfirm
+    };
+    
+    if(userRegister != null)
+    {
+        var existingUser = db.User.FirstOrDefault(e => e.Email == email || e.Login == login);
+        if (existingUser != null)
+        {
+            return Results.BadRequest(constants.ExistingUserForEmailOrLoginError);
+        }
+        else
+        {
+            var user = new User()
+            {
+                Name = name,
+                Login = login,
+                Email = email,
+                Password = password
+            };
+            db.User.Add(user);
+            db.SaveChanges();
+
+            var emailService = new EmailService();
+            emailService.SendEmail(email, constants.EndRegistrationNotificationSubject, constants.EndRegistrationNotificationBody);
+        }
+    }
+
+    return Results.Redirect(returnUrl ?? "/login");
 });
 
 app.MapGet("/login", async (HttpContext context) =>
@@ -64,9 +161,10 @@ app.MapGet("/login", async (HttpContext context) =>
 
 app.MapPost("/login", async (string? returnUrl, HttpContext context, TravelPlanerDbContext db) =>
 {
+    var constants = new Constants();
     var form = context.Request.Form;
     if (!form.ContainsKey("login") || !form.ContainsKey("password"))
-        return Results.BadRequest("Email и/или пароль не установлены");
+        return Results.BadRequest(constants.LoginOrPasswordNotFound);
 
     string login = form["login"];
     string password = form["password"];

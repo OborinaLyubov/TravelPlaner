@@ -15,4 +15,10 @@
     <ProjectReference Include="..\TravelPlanerLib\TravelPlanerLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="EmailSenderLib">
+      <HintPath>..\..\..\Users\Любовь Худякова\Desktop\EmailSenderLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,4 @@
-﻿using MailKit.Net.Smtp;
-using MimeKit;
+﻿using EmailSenderLib.Smtp;
 
 namespace TravelPlaner.Services
 {
@@ -9,35 +8,23 @@ namespace TravelPlaner.Services
     public class EmailService
     {
         /// <summary>
+        /// Хост почтового сервера отправителя
+        /// </summary>
+        private const string Host = "smtp.yandex.ru";
+
+        /// <summary>
         /// Отправка уведомлений пользователям
         /// </summary>
-        /// <param name="email">email пользователя</param>
+        /// <param name="email">email получателя</param>
         /// <param name="subject">Тема сообщения</param>
         /// <param name="message">Тело сообщения</param>
-        /// <returns></returns>
         public void SendEmail(string email, string subject, string message)
         {
-            var apiKeys = new APIKeys();
-            var messageMime = new MimeMessage();
-            messageMime.From.Add(new MailboxAddress("Администратор", apiKeys.administratorEmail));
-            messageMime.To.Add(new MailboxAddress("user", email));
-            messageMime.Subject = subject;
-            messageMime.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-            {
-                Text = message
-            };
-            try
-            {
-                var client = new SmtpClient();
-                client.Connect("smtp.yandex.ru", 465, true);
-                client.Authenticate(apiKeys.administratorLoginEmail, apiKeys.administratorPasswordEmail);
-                client.Send(messageMime);
-                client.Disconnect(true);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            var senderEmail = EmailSender.GetSenderAddress(Host);
+
+            var mailMessage = EmailSender.AddMailMessage(senderEmail, email, subject, message);
+
+            EmailSender.Send(mailMessage, Host);
         }
     }
 }

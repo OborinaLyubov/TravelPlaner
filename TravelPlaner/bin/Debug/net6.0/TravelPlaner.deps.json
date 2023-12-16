@@ -10,7 +10,8 @@
         "dependencies": {
           "MailKit": "3.6.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
-          "TravelPlanerLib": "1.0.0"
+          "TravelPlanerLib": "1.0.0",
+          "EmailSenderLib": "1.0.0.0"
         },
         "runtime": {
           "TravelPlaner.dll": {}
@@ -657,6 +658,14 @@
         "runtime": {
           "TravelPlanerLib.dll": {}
         }
+      },
+      "EmailSenderLib/1.0.0.0": {
+        "runtime": {
+          "EmailSenderLib.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1130,6 +1139,11 @@
     },
     "TravelPlanerLib/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EmailSenderLib/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

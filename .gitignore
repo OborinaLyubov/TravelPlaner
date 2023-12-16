@@ -1,0 +1,6 @@
+.git/
+.vs/
+TravelPlaner/bin/
+TravelPlaner/obj/
+TravelPlaner/APIKeys.cs
+TravelPlaner/appsettings.Development.json
